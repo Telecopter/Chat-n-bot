@@ -11,6 +11,7 @@ __author__ = 'Rico'
 
 BOT_TOKEN = "<your_bot_token>"
 BOT_SENDS = "\U0001F916 *Bot:*"
+BOT_BROADCAST = "\U0001F916 *Bot (Broadcast):*"
 STRANGER_SENDS = "\U0001F464:"
 
 logger = logging.getLogger(__name__)
