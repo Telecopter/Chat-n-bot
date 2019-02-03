@@ -51,10 +51,9 @@ def start(bot, update):
             # delete the other searching users from the list of searching_users
             logger.debug("Another user is searching now. There are 2 users. Matching them now!")
 
-            lock.acquire()
-            partner_id = searching_users[0]
-            del searching_users[0]
-            lock.release()
+            with lock:
+                partner_id = searching_users[0]
+                del searching_users[0]
 
             # add both users to the list of chatting users with the user_id of the other user.
             chatting_users.append([user_id, partner_id])
