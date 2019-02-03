@@ -3,6 +3,7 @@
 import html
 import logging
 import re
+from functools import wraps
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from threading import Lock
