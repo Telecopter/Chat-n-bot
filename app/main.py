@@ -115,6 +115,23 @@ def ban(bot, update, args):
     update.message.reply_text("{} Banned user {}".format(BOT_SENDS, banned_user_id), parse_mode="Markdown")
 
 
+@restricted
+def unban(bot, update, args):
+    """Unbans a user from using this bot"""
+    if len(args) == 0:
+        return
+    db = sqlitedb.get_instance()
+
+    banned_user_id = args[0]
+    logger.info("Unbanning user {}".format(banned_user_id))
+    if not re.match("[0-9]+", banned_user_id):
+        update.message.reply_text("{} UserID is in invalid format!".format(BOT_SENDS), parse_mode="Markdown")
+        return
+
+    db.unban(banned_user_id)
+    update.message.reply_text("{} Unbanned user {}".format(BOT_SENDS, banned_user_id), parse_mode="Markdown")
+
+
 def in_chat(bot, update):
     user_id = update.message.from_user.id
 
@@ -196,6 +213,7 @@ handlers = []
 handlers.append(CommandHandler('start', start))
 handlers.append(CommandHandler('stop', stop))
 handlers.append(CommandHandler('ban', ban, pass_args=True))
+handlers.append(CommandHandler('unban', unban, pass_args=True))
 handlers.append(MessageHandler(Filters.all, in_chat))
 
 for handler in handlers:
