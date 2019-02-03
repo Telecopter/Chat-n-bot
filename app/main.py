@@ -98,6 +98,23 @@ def stop(bot, update):
             bot.send_message(user_id, BOT_SENDS + "You left the chat!", parse_mode="Markdown")
 
 
+@restricted
+def ban(bot, update, args):
+    """Bans a user from using this bot - does not end a running chat of that user"""
+    if len(args) == 0:
+        return
+    db = sqlitedb.get_instance()
+
+    banned_user_id = args[0]
+    logger.info("Banning user {}".format(banned_user_id))
+    if not re.match("[0-9]+", banned_user_id):
+        update.message.reply_text("{} UserID is in invalid format!".format(BOT_SENDS), parse_mode="Markdown")
+        return
+
+    db.ban(banned_user_id)
+    update.message.reply_text("{} Banned user {}".format(BOT_SENDS, banned_user_id), parse_mode="Markdown")
+
+
 def in_chat(bot, update):
     user_id = update.message.from_user.id
 
@@ -178,6 +195,7 @@ def user_already_searching(user_id):
 handlers = []
 handlers.append(CommandHandler('start', start))
 handlers.append(CommandHandler('stop', stop))
+handlers.append(CommandHandler('ban', ban, pass_args=True))
 handlers.append(MessageHandler(Filters.all, in_chat))
 
 for handler in handlers:
