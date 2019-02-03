@@ -3,13 +3,15 @@
 import logging
 import re
 from functools import wraps
+from threading import Lock
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from threading import Lock
+
 
 __author__ = 'Rico'
 
 BOT_TOKEN = "<your_bot_token>"
+
 BOT_SENDS = "\U0001F916 *Bot:*"
 BOT_BROADCAST = "\U0001F916 *Bot (Broadcast):*"
 STRANGER_SENDS = "\U0001F464:"
@@ -235,6 +237,7 @@ def user_already_searching(user_id):
             counter += 1
 
     return -1
+
 
 handlers = []
 handlers.append(CommandHandler('start', start))
