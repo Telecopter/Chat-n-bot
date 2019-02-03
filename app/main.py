@@ -10,8 +10,8 @@ from threading import Lock
 __author__ = 'Rico'
 
 BOT_TOKEN = "<your_bot_token>"
-BOT_SENDS = "\U0001F916 *Bot:* "
-STRANGER_SENDS = "\U0001F464: "
+BOT_SENDS = "\U0001F916 *Bot:*"
+STRANGER_SENDS = "\U0001F464:"
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -59,16 +59,16 @@ def start(bot, update):
             chatting_users.append([user_id, partner_id])
             chatting_users.append([partner_id, user_id])
 
-            bot.send_message(user_id, BOT_SENDS + "You are connected to a stranger. Have fun and be nice!", parse_mode="Markdown")
-            bot.send_message(partner_id, BOT_SENDS + "You are connected to a stranger. Have fun and be nice!", parse_mode="Markdown")
+            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You are connected to a stranger. Have fun and be nice!"), parse_mode="Markdown")
+            bot.send_message(partner_id, "{} {}".format(BOT_SENDS, "You are connected to a stranger. Have fun and be nice!"), parse_mode="Markdown")
         else:
             # if no user is searching, add him to the list of searching users.
             # TODO later when you can search for specific gender, this condition must be changed
             searching_users.append(user_id)
-            bot.send_message(user_id, BOT_SENDS + "Added you to the searching users!", parse_mode="Markdown")
+            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "Added you to the searching users!"), parse_mode="Markdown")
 
     elif user_id in searching_users:
-        bot.send_message(user_id, BOT_SENDS + "You are already searching. Please wait!", parse_mode="Markdown")
+        bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You are already searching. Please wait!"), parse_mode="Markdown")
 
 
 def stop(bot, update):
@@ -133,7 +133,7 @@ def in_chat(bot, update):
         elif video_note is not None:
             bot.send_video_note(partner_id, video_note=video_note.file_id)
         else:
-            bot.send_message(partner_id, text=STRANGER_SENDS + text)
+            bot.send_message(partner_id, text="{} {}".format(STRANGER_SENDS, text))
 
 
 def get_partner_id(user_id):
