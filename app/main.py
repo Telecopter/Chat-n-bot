@@ -7,6 +7,7 @@ from threading import Lock
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
+from database.db_wrapper import DBwrapper as sqlitedb
 
 __author__ = 'Rico'
 
