@@ -14,7 +14,7 @@ BOT_SENDS = "\U0001F916 *Bot:* "
 STRANGER_SENDS = "\U0001F464: "
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 if not re.match("[0-9]+\:[a-zA-Z0-9\-\_]+", BOT_TOKEN):
     logging.error("Bot token not correct - please check.")
