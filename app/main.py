@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import html
 import logging
 import re
 from functools import wraps
