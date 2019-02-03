@@ -12,6 +12,7 @@ from database.db_wrapper import DBwrapper as sqlitedb
 __author__ = 'Rico'
 
 BOT_TOKEN = "<your_bot_token>"
+LIST_OF_ADMINS = []  # Enter your Telegram ID here to use /ban, /unban and /broadcast
 
 BOT_SENDS = "\U0001F916 *Bot:*"
 BOT_BROADCAST = "\U0001F916 *Bot (Broadcast):*"
