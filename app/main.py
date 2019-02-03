@@ -46,6 +46,11 @@ def start(bot, update):
     user_id = update.message.from_user.id
     user = update.message.from_user
     db = sqlitedb.get_instance()
+
+    if user_id in db.get_banned_users():
+        bot.send_message(user_id, "{} You have been banned from using this bot!".format(BOT_SENDS), parse_mode="Markdown")
+        return
+
     db.add_user(user.id, "en", user.first_name, user.last_name, user.username)
 
     if (user_id not in searching_users) and (user_already_chatting(user_id) == -1):
@@ -76,6 +81,12 @@ def start(bot, update):
 
 def stop(bot, update):
     user_id = update.message.from_user.id
+    db = sqlitedb.get_instance()
+
+    if user_id in db.get_banned_users():
+        bot.send_message(user_id, "{} You have been banned from using this bot!".format(BOT_SENDS), parse_mode="Markdown")
+        return
+
     if (user_id in searching_users) or (user_already_chatting(user_id) >= 0):
 
         if user_id in searching_users:
