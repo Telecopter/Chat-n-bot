@@ -44,6 +44,9 @@ def restricted(func):
 
 def start(bot, update):
     user_id = update.message.from_user.id
+    user = update.message.from_user
+    db = sqlitedb.get_instance()
+    db.add_user(user.id, "en", user.first_name, user.last_name, user.username)
 
     if (user_id not in searching_users) and (user_already_chatting(user_id) == -1):
         # search for another "searching" user in searching_users list
