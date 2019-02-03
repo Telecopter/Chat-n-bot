@@ -132,6 +132,21 @@ def unban(bot, update, args):
     update.message.reply_text("{} Unbanned user {}".format(BOT_SENDS, banned_user_id), parse_mode="Markdown")
 
 
+@restricted
+def broadcast(bot, update, args):
+    """Sends a broadcast message to all known users"""
+    if len(args) == 0:
+        return
+    text = " ".join(args)
+    db = sqlitedb.get_instance()
+
+    users = db.get_all_users()
+    print(users)
+
+    for user_id in users:
+        bot.send_message(user_id, "{} {}".format(BOT_BROADCAST, text), parse_mode="Markdown")
+
+
 def in_chat(bot, update):
     user_id = update.message.from_user.id
 
@@ -214,6 +229,7 @@ handlers.append(CommandHandler('start', start))
 handlers.append(CommandHandler('stop', stop))
 handlers.append(CommandHandler('ban', ban, pass_args=True))
 handlers.append(CommandHandler('unban', unban, pass_args=True))
+handlers.append(CommandHandler('broadcast', broadcast, pass_args=True))
 handlers.append(MessageHandler(Filters.all, in_chat))
 
 for handler in handlers:
