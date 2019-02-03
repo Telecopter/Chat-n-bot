@@ -37,7 +37,7 @@ def start(bot, update):
         # search for another "searching" user in searching_users list
         if len(searching_users) > 0:
             # delete the other searching users from the list of searching_users
-            print("Another user is searching now. There are 2 users. Matching them now!")
+            logger.debug("Another user is searching now. There are 2 users. Matching them now!")
 
             lock.acquire()
             partner_id = searching_users[0]
