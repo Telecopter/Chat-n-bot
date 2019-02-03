@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
-import sqlite3
 import os
+import sqlite3
 
 __author__ = 'Rico'
+
 
 class DBwrapper(object):
     class __DBwrapper(object):
@@ -90,8 +91,6 @@ class DBwrapper(object):
                 banned_users.append(user[0])
 
             return banned_users
-
-
 
         def check_if_user_saved(self, user_id):
             self.cursor.execute("SELECT rowid, * FROM users WHERE userID=?;", [str(user_id)])
