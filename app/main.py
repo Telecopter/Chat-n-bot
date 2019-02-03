@@ -110,8 +110,8 @@ def stop(bot, update):
             del chatting_users[partner_index]
 
             # send message that other user left the chat
-            bot.send_message(partner_id, BOT_SENDS + "Your partner left the chat", parse_mode="Markdown")
-            bot.send_message(user_id, BOT_SENDS + "You left the chat!", parse_mode="Markdown")
+            bot.send_message(partner_id, "{} {}".format(BOT_SENDS, "Your partner left the chat"), parse_mode="Markdown")
+            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You left the chat!"), parse_mode="Markdown")
 
 
 @restricted
