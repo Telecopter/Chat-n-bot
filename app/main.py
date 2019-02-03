@@ -30,6 +30,18 @@ chatting_users = []
 searching_users = []
 
 
+def restricted(func):
+    @wraps(func)
+    def wrapped(bot, update, *args, **kwargs):
+        user_id = update.effective_user.id
+        if user_id not in LIST_OF_ADMINS:
+            logger.info("Unauthorized access denied for method '{}' for user {}.".format(func.__name__, user_id))
+            return
+        return func(bot, update, *args, **kwargs)
+
+    return wrapped
+
+
 def start(bot, update):
     user_id = update.message.from_user.id
 
