@@ -253,6 +253,7 @@ def user_already_searching(user_id):
 handlers = []
 handlers.append(CommandHandler('start', start))
 handlers.append(CommandHandler('stop', stop))
+handlers.append(CommandHandler('next', next))
 handlers.append(CommandHandler('ban', ban, pass_args=True))
 handlers.append(CommandHandler('unban', unban, pass_args=True))
 handlers.append(CommandHandler('broadcast', broadcast, pass_args=True))
