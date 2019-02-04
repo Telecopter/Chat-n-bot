@@ -78,7 +78,7 @@ def start(bot, update):
             # if no user is searching, add him to the list of searching users.
             # TODO later when you can search for specific gender, this condition must be changed
             searching_users.append(user_id)
-            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "Added you to the searching users!"), parse_mode="Markdown")
+            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "Searching for strangers!"), parse_mode="Markdown")
 
     elif user_id in searching_users:
         bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You are already searching. Please wait!"), parse_mode="Markdown")
