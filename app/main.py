@@ -114,6 +114,14 @@ def stop(bot, update):
             bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You left the chat!"), parse_mode="Markdown")
 
 
+def next(bot, update):
+    """Go to next user if currently in a conversation"""
+    user_id = update.message.from_user.id
+    if user_already_chatting(user_id) >= 0:
+        stop(bot, update)
+        start(bot, update)
+
+
 @restricted
 def ban(bot, update, args):
     """Bans a user from using this bot - does not end a running chat of that user"""
