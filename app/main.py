@@ -72,8 +72,9 @@ def start(bot, update):
             chatting_users.append([user_id, partner_id])
             chatting_users.append([partner_id, user_id])
 
-            bot.send_message(user_id, "{} {}".format(BOT_SENDS, "You are connected to a stranger. Have fun and be nice!"), parse_mode="Markdown")
-            bot.send_message(partner_id, "{} {}".format(BOT_SENDS, "You are connected to a stranger. Have fun and be nice!"), parse_mode="Markdown")
+            text = "You are connected to a stranger. Have fun and be nice! Skip stranger with /next."
+            bot.send_message(user_id, "{} {}".format(BOT_SENDS, text), parse_mode="Markdown")
+            bot.send_message(partner_id, "{} {}".format(BOT_SENDS, text), parse_mode="Markdown")
         else:
             # if no user is searching, add him to the list of searching users.
             # TODO later when you can search for specific gender, this condition must be changed
